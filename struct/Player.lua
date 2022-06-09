@@ -2,12 +2,12 @@ Player = Sprite:extend "Player"
 
 function Player:init()
     -- making the player sprite (currently a rectangle)
-    Player.super.init(self, 100, 100, love.physics.newRectangleShape(love.physics.getMeter(), love.physics.getMeter() * 2), "dynamic")
+    Player.super.init(self, 100, 100, love.physics.newRectangleShape(love.physics.getMeter(), love.physics.getMeter()), "dynamic")
     self.body:setFixedRotation(true)
     -- setting the speed to 6
     self.speed = 6
 end
-
+-- creating a pla
 function Player:handleMovement(dt)
     local xVel, yVel = self.body:getLinearVelocity()
     xVel = xVel / love.physics.getMeter()
@@ -68,7 +68,6 @@ function Player:handleMovement(dt)
         if yVel < -self.speed / 2 then
             yVel = -self.speed / 2
         end
-
         if yVel < self.speed then
             yVel = yVel + self.speed * dt * 4;
             if yVel > self.speed then

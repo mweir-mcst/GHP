@@ -9,10 +9,10 @@ function love.load()
 
     World = love.physics.newWorld()
     -- linking to the github that we made
-    Map = STI("level/githubathonLevelLuaTest.lua", {"box2d"})
+    Map = STI("level/githubathonLevelLuaTestTwo.lua", {"box2d"})
     Map:box2d_init(World)
     -- converting all the layers into a custom layer that we will use for the game
-    Sprites = Map:addCustomLayer("SpriteLayer", 3)
+    Sprites = Map:addCustomLayer("GameSprite", 3)
     Sprites.sprites = {}
     -- updating the deltatime
     function Sprites:update(dt)

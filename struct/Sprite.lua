@@ -8,7 +8,7 @@ function Sprite:init(x, y, shape, bodyType)
 end
 
 function Sprite.findIndex(sprite)
-    for index, currentSprite in pairs(Sprites) do
+    for index, currentSprite in pairs(Sprites.sprites) do
         if sprite == currentSprite then
             return index
         end
@@ -16,7 +16,7 @@ function Sprite.findIndex(sprite)
 end
 
 function Sprite:destroy()
-    table.remove(Sprites, Sprite.findIndex(self))
+    table.remove(Sprites.sprites, Sprite.findIndex(self))
     self.body:destroy()
 end
 

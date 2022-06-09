@@ -15,7 +15,50 @@ return {
     {
       name = "mainTileset",
       firstgid = 1,
-      filename = "mainTileset.tsx"
+      tilewidth = 16,
+      tileheight = 16,
+      spacing = 0,
+      margin = 0,
+      columns = 30,
+      image = "../tileset/dungeon tileset calciumtrice.png",
+      imagewidth = 480,
+      imageheight = 560,
+      objectalignment = "unspecified",
+      tileoffset = {
+        x = 0,
+        y = 0
+      },
+      grid = {
+        orientation = "orthogonal",
+        width = 16,
+        height = 16
+      },
+      properties = {},
+      wangsets = {},
+      tilecount = 1050,
+      tiles = {
+        {
+          id = 581,
+          animation = {
+            {
+              tileid = 581,
+              duration = 300
+            },
+            {
+              tileid = 583,
+              duration = 300
+            },
+            {
+              tileid = 582,
+              duration = 300
+            },
+            {
+              tileid = 583,
+              duration = 300
+            }
+          }
+        }
+      }
     }
   },
   layers = {
@@ -143,7 +186,7 @@ return {
       draworder = "topdown",
       id = 4,
       name = "Sprite",
-      visible = false,
+      visible = true,
       opacity = 1,
       offsetx = 0,
       offsety = 0,
