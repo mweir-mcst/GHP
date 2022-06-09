@@ -1,78 +1,101 @@
 Player = Sprite:extend "Player"
 
 function Player:init()
-    Player.super.init(self, 16, 16, love.physics.newRectangleShape(32, 32), "dynamic")
-
-    self.moveX = 0;
-    self.moveNX = 0;
-    self.moveY = 0;
-    self.moveNY = 0;
-    self.inMotionX = false;
-    self.inMotionNX = false;
-    self.inMotionY = false;
-    self.inMotionNY = false;
+    -- making the player sprite
+    Player.super.init(self, 100, 100, love.physics.newRectangleShape(love.physics.getMeter(), love.physics.getMeter() * 2), "dynamic")
+    self.speed = 6
 end
 
+function Player:handleMovement(dt)
+    local xVel, yVel = self.body:getLinearVelocity()
+    xVel = xVel / love.physics.getMeter()
+    yVel = yVel / love.physics.getMeter()
+
+    if love.keyboard.isDown("left") or love.keyboard.isDown("a") then
+        if xVel > self.speed / 2 then
+            xVel = self.speed / 2
+        end
+
+        if xVel > -self.speed then
+            xVel = xVel - self.speed * dt * 4;
+            if xVel < -self.speed then
+                xVel = -self.speed
+            end
+        end
+
+    elseif love.keyboard.isDown("right") or love.keyboard.isDown("d") then
+        if xVel < -self.speed / 2 then
+            xVel = -self.speed / 2
+        end
+
+        if xVel < self.speed then
+            xVel = xVel + self.speed * dt * 4;
+            if xVel > self.speed then
+                xVel = self.speed
+            end
+        end
+
+    elseif xVel > 0 then
+        xVel = xVel - self.speed * dt * 2
+
+        if xVel < 0 then
+            xVel = 0
+        end
+
+    elseif xVel < 0 then
+        xVel = xVel + self.speed * dt * 2
+
+        if xVel > 0 then
+            xVel = 0
+        end
+    end
+
+    if love.keyboard.isDown("up") or love.keyboard.isDown("w") then
+        if yVel > self.speed / 2 then
+            yVel = self.speed / 2
+        end
+
+        if yVel > -self.speed then
+            yVel = yVel - self.speed * dt * 4;
+            if yVel < -self.speed then
+                yVel = -self.speed
+            end
+        end
+
+    elseif love.keyboard.isDown("down") or love.keyboard.isDown("s") then
+        if yVel < -self.speed / 2 then
+            yVel = -self.speed / 2
+        end
+
+        if yVel < self.speed then
+            yVel = yVel + self.speed * dt * 4;
+            if yVel > self.speed then
+                yVel = self.speed
+            end
+        end
+
+    elseif yVel > 0 then
+        yVel = yVel - self.speed * dt * 2
+
+        if yVel < 0 then
+            yVel = 0
+        end
+
+    elseif yVel < 0 then
+        yVel = yVel + self.speed * dt * 2
+
+        if yVel > 0 then
+            yVel = 0
+        end
+    end
+
+    self.body:setLinearVelocity(xVel * love.physics.getMeter(), yVel * love.physics.getMeter())
+end
+-- up
 function Player:update(dt)
-    if self.moveX > 0 then self.moveX = self.moveX - dt end
-    if self.moveNX > 0 then self.moveNX = self.moveNX - dt end
-    if self.moveY > 0 then self.moveY = self.moveY - dt end
-    if self.moveNY > 0 then self.moveNY = self.moveNY - dt end
-
-    local velX, velY = self.body:getLinearVelocity()
-
-    if self.inMotionX and self.moveX <= 0 then
-        self.moveX = 0
-        self.body:setLinearVelocity(velX - 128, velY)
-        if self.moveNX <= 0 then self.inMotionX = false end
-    end
-
-    if self.inMotionNX and self.moveNX <= 0 then
-        self.moveNX = 0
-        self.body:setLinearVelocity(velX + 128, velY)
-        if self.moveX <= 0 then self.inMotionX = false end
-    end
-
-    if self.inMotionY and self.moveY <= 0 then
-        self.moveY = 0
-        self.body:setLinearVelocity(velX, velY - 128)
-        if self.moveNY <= 0 then self.inMotionY = false end
-    end
-
-    if self.inMotionNY and self.moveNY <= 0 then
-        self.moveNY = 0
-        self.body:setLinearVelocity(velX, velY + 128)
-        if self.moveY <= 0 then self.inMotionY = false end
-    end
+    self:handleMovement(dt)
 end
-
+-- drawing the player sprite
 function Player:draw()
-    love.graphics.setColor(0, 1, 0)
-    love.graphics.circle("fill", self.body:getX(), self.body:getY(), 16)
-end
-
-function Player:keypressed(key)
-    local velX, velY = self.body:getLinearVelocity()
-
-    if key == "left" or key == "a" then
-        self.moveNX = self.moveNX + 0.25;
-        self.body:setLinearVelocity(velX - 128, velY)
-        self.inMotionNX = true
-    elseif key == "right" or key == "d" then
-        self.moveX = self.moveX + 0.25;
-        self.body:setLinearVelocity(velX + 128, velY)
-        self.inMotionX = true
-    end
-
-    if key == "up" or key == "w" then
-        self.moveNY = self.moveNY + 0.25;
-        self.body:setLinearVelocity(velX, velY - 128)
-        self.inMotionNY = true
-    elseif key == "down" or key == "s" then
-        self.moveY = self.moveY + 0.25;
-        self.body:setLinearVelocity(velX, velY + 128)
-        self.inMotionY = true
-    end
-
-    print(self.body:getLinearVelocity())
+    love.graphics.polygon("fill", self.body:getWorldPoints(self.shape:getPoints()))
 end
