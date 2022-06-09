@@ -20,7 +20,7 @@ return {
       spacing = 0,
       margin = 0,
       columns = 30,
-      image = "Downloads/dungeon tileset calciumtrice.png",
+      image = "../tileset/dungeon tileset calciumtrice.png",
       imagewidth = 480,
       imageheight = 560,
       objectalignment = "unspecified",

@@ -1,11 +1,10 @@
 Sprite = Class "Sprite"
-Sprites = {}
 
 function Sprite:init(x, y, shape, bodyType)
     self.body = love.physics.newBody(World, x, y, bodyType)
     self.shape = shape
     self.fixture = love.physics.newFixture(self.body, self.shape)
-    table.insert(Sprites, self)
+    table.insert(Sprites.sprites, self)
 end
 
 function Sprite.findIndex(sprite)
