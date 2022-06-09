@@ -1,4 +1,4 @@
-Class = require "lib.30log"
+Class = require "lib.30log.30log"
 
 require "struct.Sprite"
 require "struct.Player"
