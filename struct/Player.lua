@@ -1,8 +1,9 @@
 Player = Sprite:extend "Player"
 
 function Player:init()
-    -- making the player sprite
+    -- making the player sprite (currently a rectangle)
     Player.super.init(self, 100, 100, love.physics.newRectangleShape(love.physics.getMeter(), love.physics.getMeter() * 2), "dynamic")
+    -- setting the speed to 6
     self.speed = 6
 end
 
@@ -99,7 +100,3 @@ end
 function Player:draw()
     love.graphics.polygon("fill", self.body:getWorldPoints(self.shape:getPoints()))
 end
--- creating a function in which we create enemies
-function Player:createEnemies()
-end
-    

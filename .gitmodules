@@ -1,3 +1,6 @@
 [submodule "lib/30log"]
 	path = lib/30log
 	url = https://github.com/Yonaba/30log.git
+[submodule "lib/sti"]
+	path = lib/sti
+	url = https://github.com/karai17/Simple-Tiled-Implementation.git

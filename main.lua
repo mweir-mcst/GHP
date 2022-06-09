@@ -1,11 +1,16 @@
 Class = require "lib.30log.30log"
+STI = require "lib.sti.sti"
 
 require "struct.Sprite"
 require "struct.Player"
 
 function love.load()
     love.physics.setMeter(16)
+
     World = love.physics.newWorld()
+    Map = STI("level/githubathonLevelLuaTest.lua", {"box2d"})
+    Map:box2d_init(World)
+
     Player()
 end
 
