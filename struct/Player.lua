@@ -91,7 +91,7 @@ function Player:handleMovement(dt)
 
     self.body:setLinearVelocity(xVel * love.physics.getMeter(), yVel * love.physics.getMeter())
 end
--- up
+-- updating the handleMovement function
 function Player:update(dt)
     self:handleMovement(dt)
 end
@@ -99,3 +99,7 @@ end
 function Player:draw()
     love.graphics.polygon("fill", self.body:getWorldPoints(self.shape:getPoints()))
 end
+-- creating a function in which we create enemies
+function Player:createEnemies()
+end
+    
