@@ -271,7 +271,7 @@ return {
           width = 32,
           height = 16,
           rotation = 0,
-          visible = true,
+          visible = false,
           properties = {}
         },
         {

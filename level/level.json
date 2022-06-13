@@ -4,7 +4,7 @@
      "export":
         {
          "format":"lua",
-         "target":"draftFive.lua"
+         "target":"draftSix.lua"
         }
     },
  "height":20,
@@ -183,7 +183,7 @@
                  "name":"Checkpoint1",
                  "rotation":0,
                  "type":"Checkpoint",
-                 "visible":true,
+                 "visible":false,
                  "width":32,
                  "x":48,
                  "y":144
