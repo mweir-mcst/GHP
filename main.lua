@@ -7,6 +7,7 @@ require "struct.PlayerSpawn"
 require "struct.Lever"
 require "struct.Door"
 require "struct.Box"
+require "struct.Button"
 
 local function splitTargets(str, sep)
     local t = {}
@@ -16,55 +17,23 @@ local function splitTargets(str, sep)
     return t
 end
 
-local function getOtherSprite(sprite, fixture1, fixture2)
-    local spriteFound = false
-    local otherSprite
-    if sprite.fixture == fixture1 then
-        otherSprite = Sprite.findByFixture(fixture2)
-        spriteFound = true
-    elseif sprite.fixture == fixture2 then
-        otherSprite = Sprite.findByFixture(fixture1)
-        spriteFound = true
-    end
-    if spriteFound and otherSprite then
-        return otherSprite
-    elseif spriteFound then
-        return nil
-    end
-    return false
-end
-
-function love.load()
-    love.physics.setMeter(16)
-
+local function loadMap()
     World = love.physics.newWorld()
+
+    World:setCallbacks(function(fixture1, fixture2)
+        local sprite1 = fixture1:getBody():getUserData()
+        local sprite2 = fixture2:getBody():getUserData()
+        if sprite1 ~= nil then sprite1:beginContact(sprite2) end
+        if sprite2 ~= nil then sprite2:beginContact(sprite1) end
+    end, function(fixture1, fixture2)
+        local sprite1 = fixture1:getBody():getUserData()
+        local sprite2 = fixture2:getBody():getUserData()
+        if sprite1 ~= nil then sprite1:endContact(sprite2) end
+        if sprite2 ~= nil then sprite2:endContact(sprite1) end
+    end, nil, nil)
 
     Map = STI("level/draftSeven.lua", {"box2d"})
     Map:box2d_init(World)
-
-    Tileset = love.graphics.newImage("tileset/dungeon tileset calciumtrice.png", {})
-
-    World:setCallbacks(function(fixture1, fixture2, contact)
-        for _, sprite in pairs(Sprites.sprites) do
-            local otherSprite = getOtherSprite(sprite, fixture1, fixture2)
-            if otherSprite ~= false then
-                sprite:beginContact(otherSprite, contact)
-                if otherSprite ~= nil then
-                    otherSprite:beginContact(sprite, contact)
-                end
-            end
-        end
-    end, function(fixture1, fixture2, contact)
-        for _, sprite in pairs(Sprites.sprites) do
-            local otherSprite = getOtherSprite(sprite, fixture1, fixture2)
-            if otherSprite ~= false then
-                sprite:endContact(otherSprite, contact)
-                if otherSprite ~= nil then
-                    otherSprite:endContact(sprite, contact)
-                end
-            end
-        end
-    end, nil, nil)
 
     Sprites = Map:addCustomLayer("GameSprite", 3)
     Sprites.sprites = {}
@@ -90,11 +59,23 @@ function love.load()
 
         elseif object.type == "Door" then
             Door(object.x, object.y, tonumber(string.sub(object.name, -1)))
-        
+
         elseif object.type == "Box" then
             Box(object.x, object.y)
+
+        elseif object.type == "Button" then
+            Button(object.x, object.y, splitTargets(object.properties.targets, ","))
+
         end
     end
+end
+
+function love.load()
+    love.physics.setMeter(16)
+
+    Tileset = love.graphics.newImage("tileset/dungeon tileset calciumtrice.png", {})
+
+    loadMap()
 end
 
 function love.update(dt)
@@ -107,6 +88,17 @@ function love.draw()
 end
 
 function love.keypressed(key)
+    if key == "r" then
+        for _, sprite in pairs(Sprites.sprites) do
+            sprite:destroy()
+        end
+        World:destroy()
+        loadMap()
+        return
+    elseif key == "escape" then
+        love.event.quit()
+        return
+    end
     for _, sprite in pairs(Sprites.sprites) do
         sprite:keypressed(key)
     end

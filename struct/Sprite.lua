@@ -2,6 +2,7 @@ Sprite = Class "Sprite"
 
 function Sprite:init(x, y, shape, bodyType)
     self.body = love.physics.newBody(World, x, y, bodyType)
+    self.body:setUserData(self)
     self.shape = shape
     self.fixture = love.physics.newFixture(self.body, self.shape)
     table.insert(Sprites.sprites, self)
