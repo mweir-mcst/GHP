@@ -1,4 +1,12 @@
 { "compressionlevel":-1,
+ "editorsettings":
+    {
+     "export":
+        {
+         "format":"lua",
+         "target":"draftFive.lua"
+        }
+    },
  "height":20,
  "infinite":false,
  "layers":[
@@ -104,91 +112,8 @@
         {
          "draworder":"topdown",
          "id":4,
-         "name":"Sprite",
+         "name":"Object",
          "objects":[
-                {
-                 "gid":363,
-                 "height":16,
-                 "id":6,
-                 "name":"Door1BottomLeft",
-                 "rotation":0,
-                 "type":"DoorBottomLeft",
-                 "visible":true,
-                 "width":16,
-                 "x":48,
-                 "y":208
-                }, 
-                {
-                 "gid":364,
-                 "height":16,
-                 "id":7,
-                 "name":"Door1BottomRight",
-                 "rotation":0,
-                 "type":"DoorBottomRight",
-                 "visible":true,
-                 "width":16,
-                 "x":64,
-                 "y":208
-                }, 
-                {
-                 "gid":334,
-                 "height":16,
-                 "id":8,
-                 "name":"Door1TopRight",
-                 "rotation":0,
-                 "type":"DoorTopRight",
-                 "visible":true,
-                 "width":16,
-                 "x":64,
-                 "y":192
-                }, 
-                {
-                 "gid":333,
-                 "height":16,
-                 "id":9,
-                 "name":"Door1TopLeft",
-                 "rotation":0,
-                 "type":"DoorTopLeft",
-                 "visible":true,
-                 "width":16,
-                 "x":48,
-                 "y":192
-                }, 
-                {
-                 "gid":586,
-                 "height":16,
-                 "id":10,
-                 "name":"Lever1",
-                 "rotation":0,
-                 "type":"Lever",
-                 "visible":true,
-                 "width":16,
-                 "x":96,
-                 "y":256
-                }, 
-                {
-                 "gid":571,
-                 "height":16,
-                 "id":15,
-                 "name":"Box1",
-                 "rotation":0,
-                 "type":"Box",
-                 "visible":true,
-                 "width":16,
-                 "x":80,
-                 "y":288
-                }, 
-                {
-                 "height":0,
-                 "id":17,
-                 "name":"Checkpoint1",
-                 "rotation":0,
-                 "type":"Checkpoint",
-                 "visible":true,
-                 "width":32,
-                 "x":48,
-                 "y":144
-                }, 
                 {
                  "height":0,
                  "id":18,
@@ -226,61 +151,68 @@
                  "y":112
                 }, 
                 {
-                 "gid":363,
                  "height":16,
-                 "id":21,
-                 "name":"Door2BottomLeft",
+                 "id":26,
+                 "name":"Lever1",
                  "rotation":0,
-                 "type":"DoorBottomLeft",
+                 "type":"Lever",
+                 "visible":false,
+                 "width":16,
+                 "x":96,
+                 "y":240
+                }, 
+                {
+                 "height":16,
+                 "id":27,
+                 "name":"Box1",
+                 "rotation":0,
+                 "type":"Box",
                  "visible":true,
                  "width":16,
-                 "x":240,
+                 "x":80,
+                 "y":272
+                }, 
+                {
+                 "height":32,
+                 "id":30,
+                 "name":"Door1",
+                 "rotation":0,
+                 "type":"Door",
+                 "visible":false,
+                 "width":32,
+                 "x":48,
                  "y":176
                 }, 
                 {
-                 "gid":364,
                  "height":16,
-                 "id":22,
-                 "name":"Door2BottomRight",
+                 "id":32,
+                 "name":"Checkpoint1",
                  "rotation":0,
-                 "type":"DoorBottomRight",
-                 "visible":true,
-                 "width":16,
-                 "x":256,
-                 "y":176
+                 "type":"Checkpoint",
+                 "visible":false,
+                 "width":32,
+                 "x":48,
+                 "y":144
                 }, 
                 {
-                 "gid":334,
-                 "height":16,
-                 "id":23,
-                 "name":"Door2TopRight",
+                 "height":32,
+                 "id":34,
+                 "name":"Door2",
                  "rotation":0,
-                 "type":"DoorTopRight",
-                 "visible":true,
-                 "width":16,
-                 "x":256,
-                 "y":160
-                }, 
-                {
-                 "gid":333,
-                 "height":16,
-                 "id":24,
-                 "name":"Door2TopLeft",
-                 "rotation":0,
-                 "type":"DoorTopLeft",
-                 "visible":true,
-                 "width":16,
+                 "type":"Door",
+                 "visible":false,
+                 "width":32,
                  "x":240,
-                 "y":160
+                 "y":144
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }],
  "nextlayerid":7,
- "nextobjectid":25,
+ "nextobjectid":35,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.8.5",
@@ -289,7 +221,7 @@
         {
          "columns":30,
          "firstgid":1,
-         "image":"dungeon tileset calciumtrice.png",
+         "image":"..\/tileset\/dungeon tileset calciumtrice.png",
          "imageheight":560,
          "imagewidth":480,
          "margin":0,

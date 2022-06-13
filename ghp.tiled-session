@@ -1,0 +1,32 @@
+{
+    "activeFile": "level/level.json",
+    "expandedProjectPaths": [
+        ".",
+        "level"
+    ],
+    "file.lastUsedOpenFilter": "All Files (*)",
+    "fileStates": {
+        "level/level.json": {
+            "scale": 3,
+            "selectedLayer": 3,
+            "viewCenter": {
+                "x": 125.66666666666664,
+                "y": 190
+            }
+        },
+        "level/level.json#mainTileset": {
+            "scaleInDock": 1.5,
+            "scaleInEditor": 1
+        }
+    },
+    "last.exportedFilePath": "C:/Users/compsci/GHP/level",
+    "last.imagePath": "C:/Users/compsci/GHP/tileset",
+    "map.lastUsedExportFilter": "Lua files (*.lua)",
+    "openFiles": [
+        "level/level.json"
+    ],
+    "project": "ghp.tiled-project",
+    "recentFiles": [
+        "level/level.json"
+    ]
+}

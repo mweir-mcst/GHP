@@ -15,6 +15,14 @@ function Sprite.findIndex(sprite)
     end
 end
 
+function Sprite.findByFixture(fixture)
+    for _, sprite in pairs(Sprites.sprites) do
+        if sprite.fixture == fixture then
+            return sprite
+        end
+    end
+end
+
 function Sprite:destroy()
     table.remove(Sprites.sprites, Sprite.findIndex(self))
     self.body:destroy()

@@ -3,18 +3,45 @@ STI = require "lib.sti.sti"
 
 require "struct.Sprite"
 require "struct.Player"
+require "struct.PlayerSpawn"
+require "struct.Lever"
+require "struct.Door"
 
 function love.load()
     love.physics.setMeter(16)
 
     World = love.physics.newWorld()
-    -- linking to the github that we made
-    Map = STI("level/githubathonLevelLuaTestTwo.lua", {"box2d"})
+
+    Map = STI("level/draftFive.lua", {"box2d"})
     Map:box2d_init(World)
-    -- converting all the layers into a custom layer that we will use for the game
+
+    Tileset = love.graphics.newImage("tileset/dungeon tileset calciumtrice.png")
+
+    World:setCallbacks(function(fixture1, fixture2, contact)
+        for _, sprite in pairs(Sprites.sprites) do
+            local spriteFound = false
+            local otherSprite
+            if sprite.fixture == fixture1 then
+                otherSprite = Sprite.findByFixture(fixture2)
+                spriteFound = true
+            elseif sprite.fixture == fixture2 then
+                otherSprite = Sprite.findByFixture(fixture1)
+                spriteFound = true
+            end
+            if spriteFound and otherSprite then
+                sprite:beginContact(otherSprite, contact)
+                otherSprite:beginContact(sprite, contact)
+            return
+            elseif spriteFound then
+                sprite:beginContact(nil, contact)
+                return
+            end
+        end
+    end, nil, nil, nil)
+
     Sprites = Map:addCustomLayer("GameSprite", 3)
     Sprites.sprites = {}
-    -- updating the deltatime
+
     function Sprites:update(dt)
         for _, sprite in pairs(Sprites.sprites) do
             sprite:update(dt)
@@ -27,7 +54,18 @@ function love.load()
         end
     end
 
-    LocalPlayer = Player()
+    for _, object in pairs(Map.objects) do
+        if object.type == "PlayerSpawn" then
+            PlayerSpawn(object.x, object.y, object.name == "PlayerSpawn")
+
+        elseif object.type == "Lever" then
+            Lever(object.x, object.y, tonumber(string.sub(object.name, -1)))
+
+        elseif object.type == "Door" then
+            Door(object.x, object.y, tonumber(string.sub(object.name, -1)))
+
+        end
+    end
 end
 
 function love.update(dt)
