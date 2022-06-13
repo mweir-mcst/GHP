@@ -33,3 +33,4 @@ function Sprite:draw() end
 function Sprite:keypressed() end
 function Sprite:leftMouseClick() end
 function Sprite:beginContact() end
+function Sprite:endContact() end

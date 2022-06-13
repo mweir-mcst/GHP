@@ -6,6 +6,7 @@ require "struct.Player"
 require "struct.PlayerSpawn"
 require "struct.Lever"
 require "struct.Door"
+require "struct.Box"
 
 local function splitTargets(str, sep)
     local t = {}
@@ -15,37 +16,55 @@ local function splitTargets(str, sep)
     return t
 end
 
+local function getOtherSprite(sprite, fixture1, fixture2)
+    local spriteFound = false
+    local otherSprite
+    if sprite.fixture == fixture1 then
+        otherSprite = Sprite.findByFixture(fixture2)
+        spriteFound = true
+    elseif sprite.fixture == fixture2 then
+        otherSprite = Sprite.findByFixture(fixture1)
+        spriteFound = true
+    end
+    if spriteFound and otherSprite then
+        return otherSprite
+    elseif spriteFound then
+        return nil
+    end
+    return false
+end
+
 function love.load()
     love.physics.setMeter(16)
 
     World = love.physics.newWorld()
 
-    Map = STI("level/draftSix.lua", {"box2d"})
+    Map = STI("level/draftSeven.lua", {"box2d"})
     Map:box2d_init(World)
 
     Tileset = love.graphics.newImage("tileset/dungeon tileset calciumtrice.png", {})
 
     World:setCallbacks(function(fixture1, fixture2, contact)
         for _, sprite in pairs(Sprites.sprites) do
-            local spriteFound = false
-            local otherSprite
-            if sprite.fixture == fixture1 then
-                otherSprite = Sprite.findByFixture(fixture2)
-                spriteFound = true
-            elseif sprite.fixture == fixture2 then
-                otherSprite = Sprite.findByFixture(fixture1)
-                spriteFound = true
-            end
-            if spriteFound and otherSprite then
+            local otherSprite = getOtherSprite(sprite, fixture1, fixture2)
+            if otherSprite ~= false then
                 sprite:beginContact(otherSprite, contact)
-                otherSprite:beginContact(sprite, contact)
-            return
-            elseif spriteFound then
-                sprite:beginContact(nil, contact)
-                return
+                if otherSprite ~= nil then
+                    otherSprite:beginContact(sprite, contact)
+                end
             end
         end
-    end, nil, nil, nil)
+    end, function(fixture1, fixture2, contact)
+        for _, sprite in pairs(Sprites.sprites) do
+            local otherSprite = getOtherSprite(sprite, fixture1, fixture2)
+            if otherSprite ~= false then
+                sprite:endContact(otherSprite, contact)
+                if otherSprite ~= nil then
+                    otherSprite:endContact(sprite, contact)
+                end
+            end
+        end
+    end, nil, nil)
 
     Sprites = Map:addCustomLayer("GameSprite", 3)
     Sprites.sprites = {}
@@ -67,12 +86,13 @@ function love.load()
             PlayerSpawn(object.x, object.y, object.name == "PlayerSpawn")
 
         elseif object.type == "Lever" then
-            print(object.properties.target)
-            Lever(object.x, object.y, splitTargets(object.properties.target, ","))
+            Lever(object.x, object.y, splitTargets(object.properties.targets, ","))
 
         elseif object.type == "Door" then
             Door(object.x, object.y, tonumber(string.sub(object.name, -1)))
-
+        
+        elseif object.type == "Box" then
+            Box(object.x, object.y)
         end
     end
 end
