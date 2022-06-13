@@ -2,7 +2,7 @@ Player = Sprite:extend "Player"
 
 function Player:init(x, y)
     -- making the player sprite (currently a rectangle)
-    Player.super.init(self, x, y, love.physics.newRectangleShape(love.physics.getMeter(), love.physics.getMeter()), "dynamic")
+    Player.super.init(self, x, y, love.physics.newCircleShape(love.physics.getMeter() * 2 / 5), "dynamic")
     self.body:setFixedRotation(true)
     -- setting the speed to 6
     self.speed = 6
@@ -99,5 +99,5 @@ function Player:update(dt)
 end
 -- drawing the player sprite
 function Player:draw()
-    love.graphics.draw(Tileset, self.quad, self.body:getX() - love.physics.getMeter() / 2, self.body:getY() - love.physics.getMeter() / 2)
+    love.graphics.draw(Tileset, self.quad, self.body:getX() - love.physics.getMeter() / 2, self.body:getY() - love.physics.getMeter() * 3 / 5)
 end
