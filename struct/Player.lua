@@ -6,6 +6,7 @@ function Player:init(x, y)
     self.body:setFixedRotation(true)
     -- setting the speed to 6
     self.speed = 6
+    self.quad = love.graphics.newQuad(4 * 16, 29 * 16, 16, 16, Tileset:getWidth(), Tileset:getHeight())
 end
 -- creating a pla
 function Player:handleMovement(dt)
@@ -98,5 +99,5 @@ function Player:update(dt)
 end
 -- drawing the player sprite
 function Player:draw()
-    love.graphics.polygon("fill", self.body:getWorldPoints(self.shape:getPoints()))
+    love.graphics.draw(Tileset, self.quad, self.body:getX() - love.physics.getMeter() / 2, self.body:getY() - love.physics.getMeter() / 2)
 end
