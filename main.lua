@@ -15,7 +15,7 @@ function love.load()
     Map = STI("level/draftFive.lua", {"box2d"})
     Map:box2d_init(World)
 
-    Tileset = love.graphics.newImage("tileset/dungeon tileset calciumtrice.png")
+    Tileset = love.graphics.newImage("tileset/dungeon tileset calciumtrice.png", {})
 
     World:setCallbacks(function(fixture1, fixture2, contact)
         for _, sprite in pairs(Sprites.sprites) do
@@ -74,7 +74,7 @@ function love.update(dt)
 end
 
 function love.draw()
-    Map:draw(love.graphics.getWidth() / 2 - LocalPlayer.body:getX(), love.graphics.getHeight() / 2 - LocalPlayer.body:getY())
+    Map:draw(love.graphics.getWidth() / 4 - LocalPlayer.body:getX(), love.graphics.getHeight() / 4 - LocalPlayer.body:getY(), 2, 2)
 end
 
 function love.keypressed(key)
