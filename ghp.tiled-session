@@ -19,13 +19,14 @@
             "scaleInEditor": 1
         }
     },
-    "last.exportedFilePath": "C:/Users/compsci/GHP/level",
+    "last.exportedFilePath": "C:/Users/compsci/GHP/GHP/level",
     "last.imagePath": "C:/Users/compsci/GHP/tileset",
     "map.lastUsedExportFilter": "Lua files (*.lua)",
     "openFiles": [
         "level/level.json"
     ],
     "project": "ghp.tiled-project",
+    "property.type": "string",
     "recentFiles": [
         "level/level.json"
     ]
