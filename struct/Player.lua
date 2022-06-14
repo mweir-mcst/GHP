@@ -15,6 +15,8 @@ function Player:handleMovement(dt)
     yVel = yVel / love.physics.getMeter()
 
     if love.keyboard.isDown("left") or love.keyboard.isDown("a") then
+        self.sxFactor = 1
+
         if xVel > self.speed / 2 then
             xVel = self.speed / 2
         end
@@ -27,6 +29,8 @@ function Player:handleMovement(dt)
         end
 
     elseif love.keyboard.isDown("right") or love.keyboard.isDown("d") then
+        self.sxFactor = -1
+
         if xVel < -self.speed / 2 then
             xVel = -self.speed / 2
         end
@@ -99,5 +103,5 @@ function Player:update(dt)
 end
 -- drawing the player sprite
 function Player:draw()
-    love.graphics.draw(Tileset, self.quad, self.body:getX() - love.physics.getMeter() / 2, self.body:getY() - love.physics.getMeter() * 3 / 5)
+    love.graphics.draw(Tileset, self.quad, self.body:getX(), self.body:getY() - love.physics.getMeter() * 3 / 5, 0, self.sxFactor, 1, love.physics.getMeter() / 2, 0)
 end

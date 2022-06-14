@@ -8,14 +8,14 @@
     "fileStates": {
         "": {
             "scaleInDock": 1,
-            "scaleInEditor": 5.5
+            "scaleInEditor": 3
         },
         "level/level.json": {
             "scale": 3,
-            "selectedLayer": 0,
+            "selectedLayer": 3,
             "viewCenter": {
-                "x": 183,
-                "y": 189
+                "x": 343.3333333333333,
+                "y": 229
             }
         },
         "level/level.json#mainTileset": {

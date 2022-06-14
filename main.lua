@@ -35,7 +35,7 @@ local function loadMap()
     Map = STI("level/draftSeven.lua", {"box2d"})
     Map:box2d_init(World)
 
-    Sprites = Map:addCustomLayer("GameSprite", 3)
+    Sprites = Map:addCustomLayer("GameSprite", 5)
     Sprites.sprites = {}
 
     function Sprites:update(dt)
@@ -84,7 +84,7 @@ function love.update(dt)
 end
 
 function love.draw()
-    Map:draw(love.graphics.getWidth() / 4 - LocalPlayer.body:getX(), love.graphics.getHeight() / 4 - LocalPlayer.body:getY(), 2, 2)
+    Map:draw(love.graphics.getWidth() / 6 - LocalPlayer.body:getX(), love.graphics.getHeight() / 6 - LocalPlayer.body:getY(), 3, 3)
 end
 
 function love.keypressed(key)
