@@ -123,8 +123,8 @@
                  "type":"PlayerSpawn",
                  "visible":true,
                  "width":0,
-                 "x":48,
-                 "y":272
+                 "x":359,
+                 "y":28
                 }, 
                 {
                  "height":16,
@@ -182,7 +182,7 @@
                  "name":"Box2",
                  "rotation":0,
                  "type":"Box",
-                 "visible":true,
+                 "visible":false,
                  "width":16,
                  "x":272,
                  "y":240
@@ -320,7 +320,7 @@
  "nextobjectid":45,
  "orientation":"orthogonal",
  "renderorder":"right-down",
- "tiledversion":"1.8.4",
+ "tiledversion":"1.8.5",
  "tileheight":16,
  "tilesets":[
         {

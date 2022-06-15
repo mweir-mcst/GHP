@@ -1,7 +1,7 @@
 return {
   version = "1.5",
   luaversion = "5.1",
-  tiledversion = "1.8.4",
+  tiledversion = "1.8.5",
   orientation = "orthogonal",
   renderorder = "right-down",
   width = 30,
@@ -199,8 +199,8 @@ return {
           name = "PlayerSpawn",
           type = "PlayerSpawn",
           shape = "point",
-          x = 48,
-          y = 272,
+          x = 359,
+          y = 28,
           width = 0,
           height = 0,
           rotation = 0,
@@ -271,7 +271,7 @@ return {
           width = 16,
           height = 16,
           rotation = 0,
-          visible = true,
+          visible = false,
           properties = {}
         },
         {
