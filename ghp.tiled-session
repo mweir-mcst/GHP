@@ -11,19 +11,19 @@
             "scaleInEditor": 3
         },
         "level/level.json": {
-            "scale": 3,
-            "selectedLayer": 3,
+            "scale": 1.5,
+            "selectedLayer": 2,
             "viewCenter": {
-                "x": 343.3333333333333,
-                "y": 229
+                "x": 367.3333333333333,
+                "y": 218.33333333333331
             }
         },
         "level/level.json#mainTileset": {
-            "scaleInDock": 1.5,
+            "scaleInDock": 3,
             "scaleInEditor": 1
         }
     },
-    "last.exportedFilePath": "/home/mattx8y/LoveProjects/GHP/level",
+    "last.exportedFilePath": "C:/Users/compsci/GHP/level",
     "last.imagePath": "C:/Users/compsci/GHP/tileset",
     "map.lastUsedExportFilter": "Lua files (*.lua)",
     "openFiles": [
