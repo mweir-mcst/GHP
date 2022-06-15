@@ -1,7 +1,7 @@
 Button = Sprite:extend "Button"
 
 function Button:init(x, y, targets)
-    Button.super.init(self, x, y, love.physics.newRectangleShape(love.physics.getMeter() / 2, love.physics.getMeter() / 2, love.physics.getMeter(), love.physics.getMeter()), "static")
+    Button.super.init(self, x, y, love.physics.newRectangleShape(love.physics.getMeter() / 2, love.physics.getMeter() / 2, love.physics.getMeter() * 2 / 3, love.physics.getMeter() * 2 / 3), "static")
     self.fixture:setSensor(true)
     self.targets = targets
     self.triggers = 0

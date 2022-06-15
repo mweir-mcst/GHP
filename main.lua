@@ -52,7 +52,7 @@ local function loadMap()
         if sprite2 ~= nil then sprite2:endContact(sprite1) end
     end, nil, nil)
 
-    Map = STI("level/draftSeven.lua", {"box2d"})
+    Map = STI("level/draftEight.lua", {"box2d"})
     Map:box2d_init(World)
 
     Sprites = Map:addCustomLayer("GameSprite", 5)

@@ -11,15 +11,15 @@
             "scaleInEditor": 3
         },
         "level/level.json": {
-            "scale": 1.5,
-            "selectedLayer": 2,
+            "scale": 2,
+            "selectedLayer": 3,
             "viewCenter": {
-                "x": 367.3333333333333,
-                "y": 218.33333333333331
+                "x": 359,
+                "y": 28
             }
         },
         "level/level.json#mainTileset": {
-            "scaleInDock": 3,
+            "scaleInDock": 1.5,
             "scaleInEditor": 1
         }
     },
